@@ -1,0 +1,117 @@
+#
+# Copyright (C) 2022 The LineageOS Project
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+DEVICE_PATH := device/xiaomi/lisa
+BOARD_VENDOR := xiaomi
+-include vendor/xiaomi/lisa/BoardConfigVendor.mk
+
+# A/B
+AB_OTA_UPDATER := true
+AB_OTA_PARTITIONS := \
+    boot \
+    dtbo \
+    odm \
+    product \
+    system \
+    system_ext \
+    vbmeta \
+    vbmeta_system \
+    vendor \
+    vendor_boot
+
+# Architecture
+TARGET_ARCH := arm64
+TARGET_ARCH_VARIANT := armv8-2a
+TARGET_CPU_ABI := arm64-v8a
+TARGET_CPU_ABI2 :=
+TARGET_CPU_VARIANT := generic
+TARGET_CPU_VARIANT_RUNTIME := kryo385
+
+TARGET_2ND_ARCH := arm
+TARGET_2ND_ARCH_VARIANT := armv8-a
+TARGET_2ND_CPU_ABI := armeabi-v7a
+TARGET_2ND_CPU_ABI2 := armeabi
+TARGET_2ND_CPU_VARIANT := generic
+TARGET_2ND_CPU_VARIANT_RUNTIME := kryo385
+
+# Audio
+USE_CUSTOM_AUDIO_POLICY := 1
+
+# Bootloader
+TARGET_BOOTLOADER_BOARD_NAME := lisa
+TARGET_NO_BOOTLOADER := true
+
+# Kernel
+BOARD_KERNEL_BASE := 0x00000000
+BOARD_KERNEL_IMAGE_NAME := Image
+BOARD_KERNEL_PAGESIZE := 4096
+BOARD_KERNEL_SEPARATED_DTBO := true
+
+BOARD_BOOT_HEADER_VERSION := 3
+BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
+
+TARGET_KERNEL_ADDITIONAL_FLAGS := TARGET_PRODUCT=$(PRODUCT_DEVICE)
+TARGET_KERNEL_SOURCE := kernel/xiaomi/lisa
+TARGET_KERNEL_CONFIG := vendor/lahaina-qgki_defconfig vendor/xiaomi_QGKI.config
+
+BOARD_KERNEL_CMDLINE := \
+	androidboot.console=ttyMSM0 \
+	androidboot.hardware=qcom \
+	androidboot.usbcontroller=a600000.dwc3 \
+	cgroup.memory=nokmem,nosocket \
+	console=ttyMSM0,115200n8 \
+	loop.max_part=7 \
+	msm_rtb.filter=0x237 \
+	service_locator.enable=1 \
+	swiotlb=0 \
+	pcie_ports=compat \
+	iptable_raw.raw_before_defrag=1 \
+	ip6table_raw.raw_before_defrag=1 \
+	
+BOARD_RAMDISK_USE_LZ4 := true
+
+
+# Partitions
+BOARD_FLASH_BLOCK_SIZE := 131072 
+BOARD_BOOTIMAGE_PARTITION_SIZE := 201326592
+BOARD_VENDOR_BOOTIMAGE_SIZE := 100663296
+BOARD_DTBOIMG_PARTITION_SIZE := 25165824
+BOARD_USERDATAIMG_PARTITION_SIZE := 113254576128
+BOARD_USES_METADATA_PARTITION := true
+
+BOARD_SUPER_PARTITION_SIZE := 9126805504
+BOARD_SUPER_PARTITION_GROUPS := qti_dynamic_partitions
+BOARD_QTI_DYNAMIC_PARTITIONS_PARTITION_LIST := odm product system system_ext vendor
+BOARD_QTI_DYNAMIC_PARTITIONS_SIZE := 9122611200 # (BOARD_SUPER_PARTITION_SIZE - 4MB overhead)
+
+BOARD_PRODUCTIMAGE_PARTITION_RESERVED_SIZE := 104857600
+BOARD_SYSTEMIMAGE_PARTITION_RESERVED_SIZE := 104857600
+BOARD_SYSTEM_EXTIMAGE_PARTITION_RESERVED_SIZE := 104857600
+BOARD_VENDORIMAGE_PARTITION_RESERVED_SIZE := 104857600
+BOARD_ODMIMAGE_PARTITION_RESERVED_SIZE := 104857600
+
+BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_USERDATAIMG_FILE_SYSTEM_TYPE := f2fs
+BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_ODMIMAGE_FILE_SYSTEM_TYPE := ext4
+
+TARGET_COPY_OUT_PRODUCT := product
+TARGET_COPY_OUT_SYSTEM_EXT := system_ext
+TARGET_COPY_OUT_VENDOR := vendor
+TARGET_COPY_OUT_ODM := odm
+
+# Platform
+TARGET_BOARD_PLATFORM := lahaina
+
+# Security
+VENDOR_SECURITY_PATCH := 2022-10-01
+
+# SELinux
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
+SELINUX_IGNORE_NEVERALLOWS := true
+include device/qcom/sepolicy_vndr/SEPolicy.mk
