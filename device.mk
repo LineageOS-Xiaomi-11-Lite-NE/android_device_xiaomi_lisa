@@ -63,6 +63,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     fstab.default \
     
+# NFC
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.boot.product.hardware.sku=nfc
+
 # Partitions
 PRODUCT_BUILD_SUPER_PARTITION := false
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
