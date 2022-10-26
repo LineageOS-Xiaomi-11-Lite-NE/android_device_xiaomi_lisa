@@ -4452,7 +4452,6 @@ vendor/lib/hw/vendor.qti.hardware.eid@1.0-impl.so
 vendor/lib/hw/vendor.qti.hardware.qccvndhal@1.0-impl.so
 vendor/lib/hw/vendor.qti.hardware.qseecom@1.0-impl.so
 vendor/lib/hw/vendor.qti.hardware.servicetracker@1.2-impl.so
-vendor/lib/liba2dpoffload.so
 vendor/lib/libadreno_app_profiles.so
 vendor/lib/libAF.so
 vendor/lib/libaidenoiser.so
