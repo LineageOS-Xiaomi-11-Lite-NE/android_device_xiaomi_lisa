@@ -8,7 +8,6 @@ vendor/lib/libfastcvopt.so
 vendor/lib/libmdsprpc.so
 vendor/lib/libsdsprpc.so
 vendor/lib/modules/5.4-gki/frpc-adsprpc.ko
-vendor/lib64/libadsprpc.so
 vendor/lib64/libadsp_default_listener.so
 vendor/lib64/libfastcvdsp_stub.so
 vendor/lib64/libfastcvopt.so
@@ -813,7 +812,6 @@ vendor/lib64/libmialgo_ellc.so
 vendor/lib64/libmialgo_ie_capture.so
 vendor/lib64/libmialgo_ie_preview.so
 vendor/lib64/libmialgo_image_colourkeeping.so
-vendor/lib64/libmialgo_pureShot.so
 vendor/lib64/libmialgo_pureView.so
 vendor/lib64/libmialgo_rfs.so
 vendor/lib64/libmialgo_sd.so
